@@ -1,4 +1,4 @@
-/* Fonts loaded via next/font/google in layout.tsx — do NOT add @import here */
+/* Fonts loaded via next/font/google in layout.tsx â€” do NOT add @import here */
 
 @tailwind base;
 @tailwind components;
@@ -8,13 +8,13 @@
    DESIGN TOKENS
    ============================================================ */
 :root {
-  /* ── Base Colors ── */
+  /* â”€â”€ Base Colors â”€â”€ */
   --color-void:          #080608;   /* warm near-black, NOT pure #000 */
   --color-graphite:      #0E0A0C;   /* deep warm graphite */
   --color-charcoal:      #1A1318;   /* warm dark charcoal */
   --color-burgundy:      #1A0808;   /* deep crimson depth */
 
-  /* ── Fire Palette ── */
+  /* â”€â”€ Fire Palette â”€â”€ */
   --color-fire-red:      #C41E3A;   /* crimson */
   --color-fire-red-dark: #8B0000;   /* deep red */
   --color-fire-red-light:#E02040;   /* bright crimson */
@@ -23,27 +23,27 @@
   --color-scarlet:       #DC143C;
   --color-copper:        #B87333;   /* warm copper accent */
 
-  /* ── Gold ── */
+  /* â”€â”€ Gold â”€â”€ */
   --color-gold:          #D4A017;
   --color-gold-light:    #E8B830;
   --color-amber:         #FF8C00;
 
-  /* ── Neutral ── */
+  /* â”€â”€ Neutral â”€â”€ */
   --color-warm-white:    #F5F0E8;   /* ivory, not pure white */
   --color-steel:         #8A8E91;
   --color-silver:        #C0C0C8;
 
-  /* ── Spacing ── */
+  /* â”€â”€ Spacing â”€â”€ */
   --section-padding: clamp(80px, 10vw, 160px);
   --container-max: 1400px;
 
-  /* ── Timing ── */
+  /* â”€â”€ Timing â”€â”€ */
   --ease-cinematic:  cubic-bezier(0.76, 0, 0.24, 1);
   --ease-spring:     cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --ease-smooth:     cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* ── Fonts ── */
+  /* â”€â”€ Fonts â”€â”€ */
   /* next/font injects: --font-bebas, --font-inter, --font-jetbrains via html class */
   --font-display: var(--font-bebas, 'Bebas Neue', Impact, sans-serif);
   --font-body:    var(--font-inter, 'Inter', system-ui, sans-serif);
@@ -69,7 +69,7 @@ html {
 
 body {
   background-color: #080507;
-  /* Rich fire atmosphere — deep dark with visible amber/ember warmth */
+  /* Rich fire atmosphere â€” deep dark with visible amber/ember warmth */
   background-image:
     /* Top crimson arch */
     radial-gradient(ellipse 130% 55% at 50% -8%,  rgba(196,30,58,0.16) 0%, transparent 60%),
@@ -96,11 +96,11 @@ body {
 
 /* ============================================================
    TRINETRA GLOBAL ATMOSPHERE SYSTEM
-   Graphite → Burgundy → Crimson → Amber → Gold
+   Graphite â†’ Burgundy â†’ Crimson â†’ Amber â†’ Gold
    Every page must carry the fire identity.
    ============================================================ */
 
-/* Full intensity — Services, Hero sections */
+/* Full intensity â€” Services, Hero sections */
 .tfs-atm-full {
   background-color: #080507;
   background-image:
@@ -113,7 +113,7 @@ body {
   background-attachment: fixed;
 }
 
-/* Medium intensity — About, Products, Knowledge, Contact */
+/* Medium intensity â€” About, Products, Knowledge, Contact */
 .tfs-atm-medium {
   background-color: #080507;
   background-image:
@@ -125,7 +125,7 @@ body {
   background-attachment: fixed;
 }
 
-/* Minimal intensity — long-form articles, knowledge detail */
+/* Minimal intensity â€” long-form articles, knowledge detail */
 .tfs-atm-minimal {
   background-color: #080507;
   background-image:
@@ -136,7 +136,7 @@ body {
   background-attachment: fixed;
 }
 
-/* Shared engineering grid overlay — add on top of any tfs-atm-* */
+/* Shared engineering grid overlay â€” add on top of any tfs-atm-* */
 .tfs-grid-overlay::before {
   content: '';
   position: fixed;
@@ -680,8 +680,8 @@ hr {
 .border-gradient-gold { border: 1px solid rgba(212,160,23,0.3); }
 
 /* ============================================================
-   PREMIUM BUTTON SYSTEM — tfs-btn-*
-   Physics: anticipation → compression → spring release
+   PREMIUM BUTTON SYSTEM â€” tfs-btn-*
+   Physics: anticipation â†’ compression â†’ spring release
    ============================================================ */
 
 /* Base shared */
@@ -719,7 +719,7 @@ hr {
   transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
 }
 
-/* Primary — Fire Red */
+/* Primary â€” Fire Red */
 .tfs-btn-primary {
   background: linear-gradient(135deg, #a8152f, #C41E3A);
   color: #fff;
@@ -756,7 +756,7 @@ hr {
   transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Ghost — Outline */
+/* Ghost â€” Outline */
 .tfs-btn-ghost {
   background: rgba(255,255,255,0.03);
   color: rgba(245,240,232,0.85);
@@ -787,7 +787,7 @@ hr {
 }
 
 /* ============================================================
-   CARD PHYSICS — .tfs-card
+   CARD PHYSICS â€” .tfs-card
    ============================================================ */
 .tfs-card {
   position: relative;
@@ -828,7 +828,7 @@ hr {
 .tfs-card:hover .tfs-card-highlight { opacity: 1; }
 
 /* ============================================================
-   FORM INPUTS — enhanced micro-interactions
+   FORM INPUTS â€” enhanced micro-interactions
    ============================================================ */
 .form-input {
   transition:
@@ -846,7 +846,7 @@ hr {
 }
 
 /* ============================================================
-   LINK UNDERLINE — fire red grow
+   LINK UNDERLINE â€” fire red grow
    ============================================================ */
 .tfs-link {
   position: relative;
@@ -895,7 +895,7 @@ hr {
    SERVICE CARD ANIMATIONS
    ============================================================ */
 
-/* Hydrant — pipe pulse */
+/* Hydrant â€” pipe pulse */
 @keyframes pipe-flow {
   0%   { stroke-dashoffset: 200; }
   100% { stroke-dashoffset: 0; }
@@ -908,7 +908,7 @@ hr {
   animation: pipe-flow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Alarm — signal pulse rings */
+/* Alarm â€” signal pulse rings */
 @keyframes signal-pulse {
   0%   { transform: scale(0.6); opacity: 0.9; }
   100% { transform: scale(2.2); opacity: 0; }
@@ -960,7 +960,7 @@ hr {
 }
 
 /* ============================================================
-   SCROLL REVEAL — observer-driven
+   SCROLL REVEAL â€” observer-driven
    ============================================================ */
 .reveal-on-scroll {
   opacity: 0;
@@ -1021,7 +1021,7 @@ hr {
 }
 
 /* ============================================================
-   PREMIUM PAGE HERO — shared across all inner pages
+   PREMIUM PAGE HERO â€” shared across all inner pages
    ============================================================ */
 .tfs-page-hero {
   position: relative;
@@ -1044,7 +1044,7 @@ hr {
    Stronger fire depth for non-home pages
    ============================================================ */
 
-/* Products — industrial warm steel */
+/* Products â€” industrial warm steel */
 .tfs-atm-products {
   background-color: #080507;
   background-image:
@@ -1056,7 +1056,7 @@ hr {
   background-attachment: fixed;
 }
 
-/* Knowledge — warm amber/ember */
+/* Knowledge â€” warm amber/ember */
 .tfs-atm-knowledge {
   background-color: #080507;
   background-image:
@@ -1069,7 +1069,7 @@ hr {
 }
 
 /* ============================================================
-   FLOATING EMBER ANIMATION — ambient particle motion
+   FLOATING EMBER ANIMATION â€” ambient particle motion
    ============================================================ */
 @keyframes ember-float {
   0%   { transform: translateY(0px) translateX(0px) scale(1);   opacity: 0.4; }
@@ -1084,7 +1084,7 @@ hr {
   50%       { opacity: 0.30; }
 }
 
-/* Subtle ambient fire glow — used in section decorations */
+/* Subtle ambient fire glow â€” used in section decorations */
 .tfs-fire-glow {
   animation: ember-glow-pulse 3.5s ease-in-out infinite;
 }
@@ -1120,7 +1120,7 @@ hr {
 }
 
 /* ============================================================
-   STAT COUNTER CARDS — used in About, Services
+   STAT COUNTER CARDS â€” used in About, Services
    ============================================================ */
 .tfs-stat-card {
   background: linear-gradient(135deg, rgba(196,30,58,0.08) 0%, rgba(255,87,34,0.04) 100%);
@@ -1137,7 +1137,7 @@ hr {
 }
 
 /* ============================================================
-   INDUSTRIAL GRID LINES — premium section backgrounds
+   INDUSTRIAL GRID LINES â€” premium section backgrounds
    ============================================================ */
 .tfs-grid-fine {
   background-image:
@@ -1147,7 +1147,7 @@ hr {
 }
 
 /* ============================================================
-   FIRE ACCENT BARS — used in cards, headings
+   FIRE ACCENT BARS â€” used in cards, headings
    ============================================================ */
 .tfs-accent-bar {
   display: inline-block;
@@ -1180,7 +1180,7 @@ hr {
 }
 
 /* ============================================================
-   HERO HEADLINE SWEEP — TRINETRA amber light sweep
+   HERO HEADLINE SWEEP â€” TRINETRA amber light sweep
    ============================================================ */
 @keyframes hero-amber-sweep {
   0%   { background-position: -200% center; }
@@ -1245,7 +1245,7 @@ hr {
 }
 
 /* ============================================================
-   WHATSAPP BUTTON — premium styled
+   WHATSAPP BUTTON â€” premium styled
    ============================================================ */
 .tfs-wa-fab {
   position: fixed;
@@ -1269,7 +1269,7 @@ hr {
 }
 
 /* ============================================================
-   GOLD RING ANIMATION — logo accent
+   GOLD RING ANIMATION â€” logo accent
    ============================================================ */
 @keyframes gold-ring-pulse {
   0%, 100% { transform: scale(1); opacity: 0.3; }
@@ -1281,7 +1281,7 @@ hr {
 }
 
 /* ============================================================
-   FIRE LINE — animated underline for active nav
+   FIRE LINE â€” animated underline for active nav
    ============================================================ */
 .nav-active-line {
   position: absolute;
@@ -1338,7 +1338,7 @@ hr {
 .tfs-sep-gold { height:1px; background:linear-gradient(90deg,transparent 0%,rgba(212,160,23,0.38) 30%,rgba(212,160,23,0.50) 50%,rgba(212,160,23,0.38) 70%,transparent 100%); }
 
 /* ============================================================
-   FORM INPUT � enhanced focus state
+   FORM INPUT — enhanced focus state
    ============================================================ */
 .form-input { width:100%; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:rgba(245,240,232,0.92); padding:12px 16px; font-family:var(--font-body); font-size:0.88rem; outline:none; transition:border-color 200ms ease,box-shadow 200ms ease,background 200ms ease; }
 .form-input::placeholder { color:rgba(245,240,232,0.22); }
@@ -1375,7 +1375,7 @@ hr {
 
 
 /* ============================================================
-   HERO BACKGROUND � Industrial cinematic image
+   HERO BACKGROUND — Industrial cinematic image
    background-image on section overrides body fixed gradients
    ============================================================ */
 .tfs-hero-section {
