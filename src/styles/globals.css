@@ -1,0 +1,1424 @@
+/* Fonts loaded via next/font/google in layout.tsx — do NOT add @import here */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* ── Base Colors ── */
+  --color-void:          #080608;   /* warm near-black, NOT pure #000 */
+  --color-graphite:      #0E0A0C;   /* deep warm graphite */
+  --color-charcoal:      #1A1318;   /* warm dark charcoal */
+  --color-burgundy:      #1A0808;   /* deep crimson depth */
+
+  /* ── Fire Palette ── */
+  --color-fire-red:      #C41E3A;   /* crimson */
+  --color-fire-red-dark: #8B0000;   /* deep red */
+  --color-fire-red-light:#E02040;   /* bright crimson */
+  --color-ember:         #FF5722;   /* orange ember */
+  --color-ember-light:   #FF7043;
+  --color-scarlet:       #DC143C;
+  --color-copper:        #B87333;   /* warm copper accent */
+
+  /* ── Gold ── */
+  --color-gold:          #D4A017;
+  --color-gold-light:    #E8B830;
+  --color-amber:         #FF8C00;
+
+  /* ── Neutral ── */
+  --color-warm-white:    #F5F0E8;   /* ivory, not pure white */
+  --color-steel:         #8A8E91;
+  --color-silver:        #C0C0C8;
+
+  /* ── Spacing ── */
+  --section-padding: clamp(80px, 10vw, 160px);
+  --container-max: 1400px;
+
+  /* ── Timing ── */
+  --ease-cinematic:  cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring:     cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Fonts ── */
+  /* next/font injects: --font-bebas, --font-inter, --font-jetbrains via html class */
+  --font-display: var(--font-bebas, 'Bebas Neue', Impact, sans-serif);
+  --font-body:    var(--font-inter, 'Inter', system-ui, sans-serif);
+  --font-mono:    var(--font-jetbrains, 'JetBrains Mono', Consolas, monospace);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #080507;
+  /* Rich fire atmosphere — deep dark with visible amber/ember warmth */
+  background-image:
+    /* Top crimson arch */
+    radial-gradient(ellipse 130% 55% at 50% -8%,  rgba(196,30,58,0.16) 0%, transparent 60%),
+    /* Right warm amber bloom */
+    radial-gradient(ellipse 75%  65% at 90% 20%,  rgba(220,130,10,0.13) 0%, transparent 55%),
+    /* Left ember warmth */
+    radial-gradient(ellipse 55%  45% at 8%  60%,  rgba(180,80,10,0.11) 0%, transparent 52%),
+    /* Bottom amber foundation */
+    radial-gradient(ellipse 110% 70% at 50% 105%, rgba(200,100,15,0.14) 0%, transparent 62%),
+    /* Center-right gold shimmer */
+    radial-gradient(ellipse 45%  35% at 72% 50%,  rgba(212,160,23,0.07) 0%, transparent 58%),
+    /* Center-left warm ember */
+    radial-gradient(ellipse 40%  30% at 28% 45%,  rgba(200,110,10,0.06) 0%, transparent 55%),
+    /* Top-left amber accent */
+    radial-gradient(ellipse 35%  25% at 5%  15%,  rgba(210,120,15,0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: var(--color-warm-white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ============================================================
+   TRINETRA GLOBAL ATMOSPHERE SYSTEM
+   Graphite → Burgundy → Crimson → Amber → Gold
+   Every page must carry the fire identity.
+   ============================================================ */
+
+/* Full intensity — Services, Hero sections */
+.tfs-atm-full {
+  background-color: #080507;
+  background-image:
+    radial-gradient(ellipse 130% 55% at 50% -8%,  rgba(196,30,58,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 70%  65% at 88% 22%,  rgba(210,120,10,0.15) 0%, transparent 55%),
+    radial-gradient(ellipse 55%  48% at 8%  62%,  rgba(180,70,10,0.13) 0%, transparent 52%),
+    radial-gradient(ellipse 100% 65% at 50% 105%, rgba(190,90,15,0.16) 0%, transparent 62%),
+    radial-gradient(ellipse 45%  35% at 72% 50%,  rgba(212,160,23,0.08) 0%, transparent 58%),
+    radial-gradient(ellipse 35%  28% at 5%  15%,  rgba(210,100,12,0.06) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Medium intensity — About, Products, Knowledge, Contact */
+.tfs-atm-medium {
+  background-color: #080507;
+  background-image:
+    radial-gradient(ellipse 120% 50% at 50% -5%,  rgba(196,30,58,0.13) 0%, transparent 58%),
+    radial-gradient(ellipse 65%  55% at 88% 25%,  rgba(200,110,10,0.11) 0%, transparent 55%),
+    radial-gradient(ellipse 50%  42% at 8%  60%,  rgba(170,65,10,0.09) 0%, transparent 52%),
+    radial-gradient(ellipse 90%  60% at 50% 105%, rgba(180,85,12,0.12) 0%, transparent 62%),
+    radial-gradient(ellipse 40%  30% at 70% 50%,  rgba(212,160,23,0.06) 0%, transparent 58%);
+  background-attachment: fixed;
+}
+
+/* Minimal intensity — long-form articles, knowledge detail */
+.tfs-atm-minimal {
+  background-color: #080507;
+  background-image:
+    radial-gradient(ellipse 110% 45% at 50% -5%,  rgba(196,30,58,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 55%  50% at 88% 25%,  rgba(195,105,10,0.07) 0%, transparent 52%),
+    radial-gradient(ellipse 80%  55% at 50% 105%, rgba(170,80,12,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 38%  28% at 70% 50%,  rgba(212,160,23,0.04) 0%, transparent 55%);
+  background-attachment: fixed;
+}
+
+/* Shared engineering grid overlay — add on top of any tfs-atm-* */
+.tfs-grid-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(180,100,20,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180,100,20,0.018) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto; /* Native cursor on touch devices */
+  }
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Cinematic heading sizes */
+.text-cinematic-xl {
+  font-size: clamp(3.5rem, 8vw, 9rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.text-cinematic-lg {
+  font-size: clamp(2.5rem, 5vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+.text-cinematic-md {
+  font-size: clamp(2rem, 3.5vw, 4.5rem);
+  line-height: 1;
+}
+
+/* ============================================================
+   COLOR UTILITIES
+   ============================================================ */
+.text-fire-red { color: var(--color-fire-red); }
+.text-ember { color: var(--color-ember); }
+.text-gold { color: var(--color-gold); }
+.text-warm-white { color: var(--color-warm-white); }
+.text-steel { color: var(--color-steel); }
+
+.bg-void { background-color: var(--color-void); }
+.bg-graphite { background-color: var(--color-graphite); }
+.bg-charcoal { background-color: var(--color-charcoal); }
+
+/* ============================================================
+   METALLIC GOLD EFFECT
+   ============================================================ */
+.gold-shine {
+  background: linear-gradient(
+    135deg,
+    #8B6914 0%,
+    #D4A017 25%,
+    #F0C832 50%,
+    #D4A017 75%,
+    #8B6914 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gold-shimmer 4s linear infinite;
+}
+
+@keyframes gold-shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ============================================================
+   FIRE RED GRADIENT
+   ============================================================ */
+.red-gradient {
+  background: linear-gradient(135deg, var(--color-fire-red-dark) 0%, var(--color-fire-red) 50%, var(--color-ember) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   GLASS EFFECTS
+   ============================================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-fire {
+  background: rgba(196, 30, 58, 0.08);
+  border: 1px solid rgba(196, 30, 58, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-gold {
+  background: rgba(212, 160, 23, 0.05);
+  border: 1px solid rgba(212, 160, 23, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ============================================================
+   GRADIENT BORDERS
+   ============================================================ */
+.border-gradient-fire {
+  position: relative;
+}
+
+.border-gradient-fire::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-fire-red), transparent, var(--color-ember));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.border-gradient-gold {
+  position: relative;
+}
+
+.border-gradient-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #8B6914, #D4A017, #F0C832, #D4A017, #8B6914);
+  background-size: 200% auto;
+  animation: gold-shimmer 4s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ============================================================
+   GLOW EFFECTS
+   ============================================================ */
+.glow-fire {
+  box-shadow: 0 0 30px rgba(196, 30, 58, 0.3), 0 0 60px rgba(196, 30, 58, 0.15);
+}
+
+.glow-fire-text {
+  text-shadow: 0 0 20px rgba(196, 30, 58, 0.6), 0 0 40px rgba(196, 30, 58, 0.3);
+}
+
+.glow-gold {
+  box-shadow: 0 0 30px rgba(212, 160, 23, 0.3), 0 0 60px rgba(212, 160, 23, 0.1);
+}
+
+.glow-ember {
+  box-shadow: 0 0 20px rgba(255, 87, 34, 0.5), 0 0 40px rgba(255, 87, 34, 0.25);
+}
+
+/* ============================================================
+   ATMOSPHERIC RADIALS
+   ============================================================ */
+.radial-fire-bottom {
+  background: radial-gradient(ellipse at center bottom, rgba(196, 30, 58, 0.35) 0%, transparent 70%);
+}
+
+.radial-ember-center {
+  background: radial-gradient(ellipse at center, rgba(255, 87, 34, 0.2) 0%, transparent 60%);
+}
+
+/* ============================================================
+   NOISE TEXTURE
+   ============================================================ */
+.noise {
+  position: relative;
+}
+
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+/* ============================================================
+   SECTION DIVIDERS
+   ============================================================ */
+.divider-fire {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-fire-red), transparent);
+  opacity: 0.4;
+}
+
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  opacity: 0.3;
+}
+
+/* ============================================================
+   ANIMATION CLASSES (initial states for GSAP)
+   ============================================================ */
+.anim-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.anim-slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.anim-scale-up {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+/* Clip mask for text reveals */
+.text-clip-container {
+  overflow: hidden;
+}
+
+.text-clip-inner {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+/* ============================================================
+   SCROLL TRIGGER MARKERS (dev only, hidden in prod)
+   ============================================================ */
+.st-marker {
+  display: none;
+}
+
+/* ============================================================
+   FOCUS STYLES (accessibility)
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--color-fire-red);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-fire-red);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ember);
+}
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+::selection {
+  background: rgba(196, 30, 58, 0.3);
+  color: var(--color-warm-white);
+}
+
+/* ============================================================
+   HORIZONTAL RULE
+   ============================================================ */
+hr {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+.container-trinetra {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+
+/* ============================================================
+   PREMIUM BUTTON SHADOWS
+   ============================================================ */
+.btn-shadow-fire {
+  box-shadow: 
+    0 4px 15px rgba(196, 30, 58, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-shadow-fire:hover {
+  box-shadow: 
+    0 8px 25px rgba(196, 30, 58, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================================
+   GRID PATTERNS
+   ============================================================ */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hex-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   LOADING STATES
+   ============================================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 25%,
+    rgba(255,255,255,0.07) 50%,
+    rgba(255,255,255,0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ============================================================
+   REDUCED MOTION OVERRIDES
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .gold-shine {
+    animation: none;
+  }
+  
+  .border-gradient-gold::before {
+    animation: none;
+    background-position: 0% center;
+  }
+}
+
+/* ============================================================
+   WHATSAPP BUTTON
+   ============================================================ */
+.btn-whatsapp {
+  background: rgba(37, 211, 102, 0.1);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  color: #25D366;
+}
+
+.btn-whatsapp:hover {
+  background: rgba(37, 211, 102, 0.2);
+  border-color: rgba(37, 211, 102, 0.5);
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+.cursor-core {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  will-change: transform;
+}
+
+/* ============================================================
+   PAGE TRANSITION
+   ============================================================ */
+.page-transition-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-fire-red), var(--color-ember));
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 99990;
+}
+
+/* ============================================================
+   FLOATING CONTACT
+   ============================================================ */
+.floating-contact {
+  position: fixed;
+  right: 24px;
+  bottom: 40px;
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* ============================================================
+   MOBILE CONTACT BAR
+   ============================================================ */
+.mobile-contact-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  background: rgba(5, 5, 5, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ============================================================
+   CUSTOM CURSOR POSITIONING
+   ============================================================ */
+.cursor-core,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+/* ============================================================
+   FORM INPUTS
+   ============================================================ */
+.form-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #F5F0E8;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.form-input::placeholder { color: rgba(245, 240, 232, 0.2); }
+.form-input:focus { border-color: rgba(196, 30, 58, 0.5); box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.08); }
+.form-input option { background: #1a1a1a; color: #F5F0E8; }
+
+/* ============================================================
+   BUTTON VARIANTS
+   ============================================================ */
+.btn-shadow-fire { box-shadow: 0 4px 24px rgba(196,30,58,0.35), 0 1px 6px rgba(196,30,58,0.2); }
+.btn-shadow-fire:hover { box-shadow: 0 6px 32px rgba(196,30,58,0.50), 0 2px 8px rgba(196,30,58,0.3); }
+.btn-whatsapp { background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.25); color: #25D366; }
+.btn-whatsapp:hover { background: rgba(37,211,102,0.18); border-color: rgba(37,211,102,0.4); }
+
+/* ============================================================
+   RADIAL BACKGROUNDS
+   ============================================================ */
+.radial-fire-bottom { background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(196,30,58,0.25), transparent); }
+.radial-ember-center { background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(255,87,34,0.15), transparent); }
+.grid-pattern { background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 60px 60px; }
+.divider-fire { height: 1px; background: linear-gradient(90deg, transparent, rgba(196,30,58,0.4), transparent); }
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+.container-trinetra { max-width: 1400px; margin-left: auto; margin-right: auto; padding-left: clamp(1rem, 5vw, 4rem); padding-right: clamp(1rem, 5vw, 4rem); }
+
+/* Aliases */
+.bg-fire-red { background-color: #C41E3A; }
+.bg-fire-red-light { background-color: #E02040; }
+.text-fire-red-light { color: #E02040; }
+.border-fire-red { border-color: #C41E3A; }
+.border-gradient-gold { border: 1px solid rgba(212,160,23,0.3); }
+
+/* ============================================================
+   PREMIUM BUTTON SYSTEM — tfs-btn-*
+   Physics: anticipation → compression → spring release
+   ============================================================ */
+
+/* Base shared */
+.tfs-btn-primary,
+.tfs-btn-ghost,
+.tfs-btn-whatsapp {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 200ms ease,
+    border-color 200ms ease,
+    filter 200ms ease;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tfs-btn-primary:active,
+.tfs-btn-ghost:active,
+.tfs-btn-whatsapp:active {
+  transform: scale(0.96);
+  transition-duration: 100ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Primary — Fire Red */
+.tfs-btn-primary {
+  background: linear-gradient(135deg, #a8152f, #C41E3A);
+  color: #fff;
+  box-shadow:
+    0 4px 20px rgba(196,30,58,0.35),
+    0 1px 6px  rgba(196,30,58,0.20),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.tfs-btn-primary:hover {
+  background: linear-gradient(135deg, #C41E3A, #E02040);
+  box-shadow:
+    0 8px 32px rgba(196,30,58,0.50),
+    0 2px 10px rgba(196,30,58,0.30),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.06);
+}
+
+/* Shine sweep on hover */
+.tfs-btn-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.14) 50%,
+    transparent 100%
+  );
+  transform: translateX(-110%);
+  transition: transform 0ms;
+}
+.tfs-btn-primary:hover .tfs-btn-shine {
+  transform: translateX(110%);
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ghost — Outline */
+.tfs-btn-ghost {
+  background: rgba(255,255,255,0.03);
+  color: rgba(245,240,232,0.85);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.tfs-btn-ghost:hover {
+  background: rgba(196,30,58,0.06);
+  border-color: rgba(196,30,58,0.30);
+  color: #fff;
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 4px 20px rgba(196,30,58,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* WhatsApp */
+.tfs-btn-whatsapp {
+  background: rgba(37,211,102,0.10);
+  color: #25D366;
+  border: 1px solid rgba(37,211,102,0.22);
+}
+.tfs-btn-whatsapp:hover {
+  background: rgba(37,211,102,0.17);
+  border-color: rgba(37,211,102,0.38);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 4px 18px rgba(37,211,102,0.18);
+}
+
+/* ============================================================
+   CARD PHYSICS — .tfs-card
+   ============================================================ */
+.tfs-card {
+  position: relative;
+  transition:
+    transform   500ms cubic-bezier(0.25, 1.3, 0.5, 1),
+    box-shadow  400ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+}
+
+.tfs-card:hover {
+  transform: translateY(-10px) scale(1.012);
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.55),
+    0 0 40px rgba(196,30,58,0.08);
+}
+
+.tfs-card:active {
+  transform: translateY(-4px) scale(1.004);
+  transition-duration: 120ms;
+}
+
+/* Highlight sweep on card hover */
+.tfs-card-highlight {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255,255,255,0.035) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.tfs-card:hover .tfs-card-highlight { opacity: 1; }
+
+/* ============================================================
+   FORM INPUTS — enhanced micro-interactions
+   ============================================================ */
+.form-input {
+  transition:
+    border-color 200ms ease,
+    box-shadow   200ms ease,
+    transform    150ms ease;
+}
+.form-input:focus {
+  border-color: rgba(196,30,58,0.55);
+  box-shadow: 0 0 0 3px rgba(196,30,58,0.09), 0 1px 4px rgba(0,0,0,0.3);
+  transform: none;
+}
+.form-input:hover:not(:focus) {
+  border-color: rgba(255,255,255,0.14);
+}
+
+/* ============================================================
+   LINK UNDERLINE — fire red grow
+   ============================================================ */
+.tfs-link {
+  position: relative;
+  color: rgba(245,240,232,0.7);
+  transition: color 200ms ease;
+}
+.tfs-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 100%;
+  height: 1px;
+  background: #C41E3A;
+  transition: right 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tfs-link:hover { color: #fff; }
+.tfs-link:hover::after { right: 0; }
+
+/* ============================================================
+   PAGE TRANSITION BAR
+   ============================================================ */
+.page-transition-bar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #C41E3A, #FF5722, #D4A017);
+  z-index: 99998;
+  transition: width 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 8px rgba(196,30,58,0.6);
+}
+
+/* ============================================================
+   ENGINEERING LINE DRAW
+   ============================================================ */
+.tfs-line-draw {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 900ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.tfs-line-draw.visible { transform: scaleX(1); }
+
+/* ============================================================
+   SERVICE CARD ANIMATIONS
+   ============================================================ */
+
+/* Hydrant — pipe pulse */
+@keyframes pipe-flow {
+  0%   { stroke-dashoffset: 200; }
+  100% { stroke-dashoffset: 0; }
+}
+.icon-pipe-flow {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+.tfs-card:hover .icon-pipe-flow {
+  animation: pipe-flow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Alarm — signal pulse rings */
+@keyframes signal-pulse {
+  0%   { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.icon-signal { animation: none; }
+.tfs-card:hover .icon-signal {
+  animation: signal-pulse 1s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.tfs-card:hover .icon-signal-2 {
+  animation: signal-pulse 1s cubic-bezier(0.16, 1, 0.3, 1) 0.33s infinite;
+}
+
+/* Pressure gauge sweep */
+@keyframes gauge-sweep {
+  from { stroke-dashoffset: 120; }
+  to   { stroke-dashoffset: 30; }
+}
+.icon-gauge {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+}
+.tfs-card:hover .icon-gauge {
+  animation: gauge-sweep 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Checklist tick */
+@keyframes tick-in {
+  from { stroke-dashoffset: 24; }
+  to   { stroke-dashoffset: 0; }
+}
+.icon-tick {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+}
+.tfs-card:hover .icon-tick        { animation: tick-in 0.3s ease forwards 0.1s; }
+.tfs-card:hover .icon-tick-2      { animation: tick-in 0.3s ease forwards 0.3s; }
+.tfs-card:hover .icon-tick-3      { animation: tick-in 0.3s ease forwards 0.5s; }
+
+/* Blueprint expand */
+@keyframes blueprint-reveal {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.icon-blueprint {
+  opacity: 0;
+}
+.tfs-card:hover .icon-blueprint {
+  animation: blueprint-reveal 0.5s cubic-bezier(0.25, 1.3, 0.5, 1) forwards;
+}
+
+/* ============================================================
+   SCROLL REVEAL — observer-driven
+   ============================================================ */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity   700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-on-scroll:nth-child(2) { transition-delay: 80ms; }
+.reveal-on-scroll:nth-child(3) { transition-delay: 160ms; }
+.reveal-on-scroll:nth-child(4) { transition-delay: 240ms; }
+.reveal-on-scroll:nth-child(5) { transition-delay: 320ms; }
+
+/* Scale variant */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity   800ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================================================
+   GOLD BADGE
+   ============================================================ */
+.tfs-badge-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  background: rgba(212,160,23,0.08);
+  border: 1px solid rgba(212,160,23,0.22);
+  color: rgba(212,160,23,0.85);
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   IMAGE HOVER PARALLAX
+   ============================================================ */
+.tfs-img-hover {
+  transition: transform 500ms cubic-bezier(0.25, 1.3, 0.5, 1);
+  will-change: transform;
+}
+.tfs-img-hover:hover {
+  transform: scale(1.04);
+}
+
+/* ============================================================
+   PREMIUM PAGE HERO — shared across all inner pages
+   ============================================================ */
+.tfs-page-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(80px, 10vw, 140px) 0 clamp(48px, 6vw, 80px);
+}
+
+.tfs-page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196,30,58,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 50%, rgba(212,160,23,0.06) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* ============================================================
+   ENHANCED ATMOSPHERE VARIANTS
+   Stronger fire depth for non-home pages
+   ============================================================ */
+
+/* Products — industrial warm steel */
+.tfs-atm-products {
+  background-color: #080507;
+  background-image:
+    radial-gradient(ellipse 110% 45% at 50% -5%,  rgba(196,30,58,0.14) 0%, transparent 58%),
+    radial-gradient(ellipse 70%  60% at 85% 30%,  rgba(200,110,10,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 55%  45% at 10% 65%,  rgba(170,65,10,0.10) 0%, transparent 52%),
+    radial-gradient(ellipse 90%  60% at 50% 105%, rgba(185,85,12,0.13) 0%, transparent 62%),
+    radial-gradient(ellipse 40%  30% at 68% 52%,  rgba(212,160,23,0.07) 0%, transparent 58%);
+  background-attachment: fixed;
+}
+
+/* Knowledge — warm amber/ember */
+.tfs-atm-knowledge {
+  background-color: #080507;
+  background-image:
+    radial-gradient(ellipse 100% 45% at 50% -5%,  rgba(196,30,58,0.12) 0%, transparent 58%),
+    radial-gradient(ellipse 65%  55% at 88% 25%,  rgba(220,120,30,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 50%  42% at 8%  60%,  rgba(180,90,10,0.08) 0%, transparent 52%),
+    radial-gradient(ellipse 85%  58% at 50% 105%, rgba(180,90,15,0.11) 0%, transparent 62%),
+    radial-gradient(ellipse 38%  28% at 70% 50%,  rgba(212,160,23,0.06) 0%, transparent 55%);
+  background-attachment: fixed;
+}
+
+/* ============================================================
+   FLOATING EMBER ANIMATION — ambient particle motion
+   ============================================================ */
+@keyframes ember-float {
+  0%   { transform: translateY(0px) translateX(0px) scale(1);   opacity: 0.4; }
+  25%  { transform: translateY(-8px) translateX(3px) scale(1.1); opacity: 0.65; }
+  50%  { transform: translateY(-15px) translateX(-2px) scale(0.9); opacity: 0.5; }
+  75%  { transform: translateY(-22px) translateX(4px) scale(1.05); opacity: 0.35; }
+  100% { transform: translateY(-30px) translateX(0px) scale(0.8);  opacity: 0; }
+}
+
+@keyframes ember-glow-pulse {
+  0%, 100% { opacity: 0.15; }
+  50%       { opacity: 0.30; }
+}
+
+/* Subtle ambient fire glow — used in section decorations */
+.tfs-fire-glow {
+  animation: ember-glow-pulse 3.5s ease-in-out infinite;
+}
+
+/* ============================================================
+   ENHANCED SECTION DIVIDERS
+   ============================================================ */
+.tfs-divider-fire {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(196,30,58,0.0) 10%,
+    rgba(196,30,58,0.45) 35%,
+    rgba(255,87,34,0.55) 50%,
+    rgba(196,30,58,0.45) 65%,
+    rgba(196,30,58,0.0) 90%,
+    transparent 100%
+  );
+  position: relative;
+}
+
+.tfs-divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(212,160,23,0.0) 10%,
+    rgba(212,160,23,0.40) 35%,
+    rgba(212,160,23,0.55) 50%,
+    rgba(212,160,23,0.40) 65%,
+    rgba(212,160,23,0.0) 90%,
+    transparent 100%
+  );
+}
+
+/* ============================================================
+   STAT COUNTER CARDS — used in About, Services
+   ============================================================ */
+.tfs-stat-card {
+  background: linear-gradient(135deg, rgba(196,30,58,0.08) 0%, rgba(255,87,34,0.04) 100%);
+  border: 1px solid rgba(196,30,58,0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: border-color 300ms ease, box-shadow 300ms ease, transform 400ms cubic-bezier(0.25,1.3,0.5,1);
+}
+
+.tfs-stat-card:hover {
+  border-color: rgba(196,30,58,0.30);
+  box-shadow: 0 8px 32px rgba(196,30,58,0.10);
+  transform: translateY(-4px);
+}
+
+/* ============================================================
+   INDUSTRIAL GRID LINES — premium section backgrounds
+   ============================================================ */
+.tfs-grid-fine {
+  background-image:
+    linear-gradient(rgba(180,80,20,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180,80,20,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ============================================================
+   FIRE ACCENT BARS — used in cards, headings
+   ============================================================ */
+.tfs-accent-bar {
+  display: inline-block;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #C41E3A, #FF5722);
+  box-shadow: 0 0 8px rgba(196,30,58,0.5);
+}
+
+.tfs-accent-bar-gold {
+  display: inline-block;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #8B6914, #D4A017, #F0C832);
+}
+
+/* ============================================================
+   KNOWLEDGE CARD ENHANCEMENTS
+   ============================================================ */
+.knowledge-card-accent {
+  height: 2px;
+  width: 0;
+  transition: width 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  border-radius: 1px;
+}
+
+.knowledge-card:hover .knowledge-card-accent {
+  width: 100%;
+}
+
+/* ============================================================
+   HERO HEADLINE SWEEP — TRINETRA amber light sweep
+   ============================================================ */
+@keyframes hero-amber-sweep {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.hero-trinetra-text {
+  background: linear-gradient(
+    90deg,
+    #8B6914 0%,
+    #D4A017 20%,
+    #F0C832 35%,
+    #FFD700 50%,
+    #F0C832 65%,
+    #D4A017 80%,
+    #8B6914 100%
+  );
+  background-size: 300% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hero-amber-sweep 4s linear infinite;
+}
+
+/* ============================================================
+   PREMIUM SECTION SPACING
+   ============================================================ */
+.tfs-section {
+  padding: clamp(64px, 10vw, 140px) 0;
+  position: relative;
+}
+
+.tfs-section + .tfs-section {
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+/* ============================================================
+   PRODUCT CARD IMAGE AREA
+   ============================================================ */
+.product-image-area {
+  background: linear-gradient(135deg, #f8f8f8, #ffffff);
+  transition: background 300ms ease;
+}
+
+.product-image-area:hover {
+  background: linear-gradient(135deg, #ffffff, #f5f5f5);
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE FIXES
+   ============================================================ */
+@media (max-width: 768px) {
+  .tfs-atm-full,
+  .tfs-atm-medium,
+  .tfs-atm-minimal {
+    background-attachment: scroll; /* Fix for mobile Safari */
+  }
+
+  body {
+    background-attachment: scroll;
+  }
+}
+
+/* ============================================================
+   WHATSAPP BUTTON — premium styled
+   ============================================================ */
+.tfs-wa-fab {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 8000;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 300ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 300ms ease;
+}
+
+.tfs-wa-fab:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 32px rgba(37,211,102,0.55), 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* ============================================================
+   GOLD RING ANIMATION — logo accent
+   ============================================================ */
+@keyframes gold-ring-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50%       { transform: scale(1.08); opacity: 0.5; }
+}
+
+.tfs-gold-ring {
+  animation: gold-ring-pulse 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   FIRE LINE — animated underline for active nav
+   ============================================================ */
+.nav-active-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C41E3A, transparent);
+  transform-origin: center;
+}
+
+/* ============================================================
+   PREFERS-REDUCED-MOTION OVERRIDES
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-trinetra-text {
+    animation: none;
+    background-position: 0% center;
+  }
+  .tfs-fire-glow {
+    animation: none;
+    opacity: 0.2;
+  }
+  .tfs-gold-ring {
+    animation: none;
+    opacity: 0.3;
+  }
+  .gold-shine {
+    animation: none;
+    background-position: 0% center;
+  }
+}
+
+/* ============================================================
+   PREMIUM CARD DEPTH
+   ============================================================ */
+.tfs-card-premium {
+  background: linear-gradient(145deg, rgba(28,16,12,0.96) 0%, rgba(18,10,8,0.98) 100%);
+  border: 1px solid rgba(255,255,255,0.055);
+  border-radius: 18px;
+  transition: transform 450ms cubic-bezier(0.25,1.3,0.5,1), box-shadow 380ms cubic-bezier(0.16,1,0.3,1), border-color 280ms ease;
+  will-change: transform, box-shadow;
+}
+.tfs-card-premium:hover {
+  transform: translateY(-6px) scale(1.008);
+  border-color: rgba(196,30,58,0.22);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55), 0 0 32px rgba(196,30,58,0.07), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* ============================================================
+   SECTION SEPARATORS
+   ============================================================ */
+.tfs-sep { height:1px; background:linear-gradient(90deg,transparent 0%,rgba(196,30,58,0.35) 30%,rgba(255,87,34,0.42) 50%,rgba(196,30,58,0.35) 70%,transparent 100%); }
+.tfs-sep-gold { height:1px; background:linear-gradient(90deg,transparent 0%,rgba(212,160,23,0.38) 30%,rgba(212,160,23,0.50) 50%,rgba(212,160,23,0.38) 70%,transparent 100%); }
+
+/* ============================================================
+   FORM INPUT � enhanced focus state
+   ============================================================ */
+.form-input { width:100%; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:rgba(245,240,232,0.92); padding:12px 16px; font-family:var(--font-body); font-size:0.88rem; outline:none; transition:border-color 200ms ease,box-shadow 200ms ease,background 200ms ease; }
+.form-input::placeholder { color:rgba(245,240,232,0.22); }
+.form-input:hover:not(:focus) { border-color:rgba(255,255,255,0.12); background:rgba(255,255,255,0.042); }
+.form-input:focus { border-color:rgba(196,30,58,0.50); box-shadow:0 0 0 3px rgba(196,30,58,0.08),0 1px 4px rgba(0,0,0,0.35); background:rgba(255,255,255,0.048); }
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width:5px; height:5px; }
+::-webkit-scrollbar-track { background:#080507; }
+::-webkit-scrollbar-thumb { background:rgba(196,30,58,0.35); border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background:rgba(196,30,58,0.55); }
+
+/* ============================================================
+   MOBILE NO OVERFLOW
+   ============================================================ */
+@media(max-width:768px) {
+  .container-trinetra { padding-left:clamp(14px,4vw,24px); padding-right:clamp(14px,4vw,24px); }
+  .tfs-atm-full,.tfs-atm-medium,.tfs-atm-minimal { background-attachment:scroll; }
+  body { background-attachment:scroll; }
+  img,video,canvas,svg,iframe { max-width:100%; }
+}
+
+/* TEXT SELECTION */
+::selection { background:rgba(196,30,58,0.30); color:#fff; }
+
+/* -- Hero logo gentle float animation --------------------------- */
+@keyframes logo-float {
+  0%, 100% { transform: translateY(0px);   }
+  33%       { transform: translateY(-7px);  }
+  66%       { transform: translateY(-3px);  }
+}
+
+
+/* ============================================================
+   HERO BACKGROUND � Industrial cinematic image
+   background-image on section overrides body fixed gradients
+   ============================================================ */
+.tfs-hero-section {
+  background-image: url('/hero-wall.jpg') !important;
+  background-size: cover !important;
+  background-position: right center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important;
+  background-color: #060302 !important;
+}
+
+/* ============================================================
+   HERO PREMIUM ANIMATIONS
+   ============================================================ */
+@keyframes tfs-glow-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%       { opacity: 0.80; transform: scale(1.06); }
+}
+@keyframes tfs-glow-pulse-slow {
+  0%, 100% { opacity: 0.30; transform: scale(1); }
+  50%       { opacity: 0.52; transform: scale(1.08); }
+}
+@keyframes tfs-logo-float {
+  0%, 100% { transform: translateY(0px) rotate(0.0deg); }
+  33%       { transform: translateY(-7px) rotate(0.15deg); }
+  66%       { transform: translateY(-3px) rotate(-0.10deg); }
+}
+@keyframes tfs-ember-drift {
+  0%   { transform: translateY(0px)   translateX(0px)   scale(1.0); opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: 0.7; }
+  100% { transform: translateY(-120px) translateX(18px)  scale(0.3); opacity: 0; }
+}
+@keyframes tfs-ember-drift-b {
+  0%   { transform: translateY(0px)  translateX(0px)   scale(1.0); opacity: 0; }
+  12%  { opacity: 0.8; }
+  90%  { opacity: 0.5; }
+  100% { transform: translateY(-90px) translateX(-14px) scale(0.2); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tfs-logo-float, .tfs-glow-a, .tfs-glow-b, .tfs-glow-c,
+  .tfs-ember-1, .tfs-ember-2, .tfs-ember-3, .tfs-ember-4 {
+    animation: none !important;
+  }
+}
+

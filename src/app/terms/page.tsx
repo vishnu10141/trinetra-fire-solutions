@@ -1,0 +1,1 @@
+﻿export default function Page() { return <div style={{paddingTop:'120px', paddingInline:'2rem', color:'white', fontFamily:'sans-serif'}}><h1 style={{fontSize:'3rem', marginBottom:'1rem'}}>TERMS</h1><p style={{color:'rgba(255,255,255,0.5)'}}>This page is coming soon.</p></div>; }
